@@ -65,7 +65,6 @@ function App() {
     localStorage.setItem("mascotas", JSON.stringify(mascotas))
   }, [mascotas])
 
-  // marca o desmarca una vacuna en el checkbox
   function manejarVacuna(v) {
     if (vacunas.includes(v)) {
       const nuevas = vacunas.filter((item) => item != v)
