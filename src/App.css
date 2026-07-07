@@ -1,18 +1,21 @@
-.App {
-  text-align: center;
-  margin-top: 30px;
+/* estilos bien simples, bootstrap hace casi todo */
+
+body {
+  background-color: #f2f2f2;
 }
 
-input {
-  padding: 8px;
+h1 {
+  color: #2c3e50;
 }
 
-button {
-  margin-left: 5px;
-  padding: 8px;
+.card {
+  border-radius: 10px;
 }
 
-li {
-  list-style: none;
-  margin: 10px;
+table th {
+  background-color: #dcdcdc;
+}
+
+.btn {
+  margin-top: 2px;
 }
