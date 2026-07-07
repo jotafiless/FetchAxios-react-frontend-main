@@ -1,15 +1,12 @@
 import { useState, useEffect } from "react"
 import "./App.css"
 
-// lista fija de vacunas para el checkbox
 const listaVacunas = ["Antirrábica", "Séxtuple", "Coronavirus", "Polivalente", "Rabia felina"]
 
 function App() {
 
-  // array principal con todas las mascotas de la clinica
   const [mascotas, setMascotas] = useState([])
 
-  // datos del formulario, una variable por cada campo
   const [nombre, setNombre] = useState("")
   const [especie, setEspecie] = useState("")
   const [raza, setRaza] = useState("")
@@ -18,27 +15,25 @@ function App() {
   const [esterilizado, setEsterilizado] = useState("no")
   const [vacunas, setVacunas] = useState([])
 
-  // datos del dueño de la mascota
+
   const [rut, setRut] = useState("")
   const [nombreDueño, setNombreDueño] = useState("")
   const [telefono, setTelefono] = useState("")
 
-  // datos de la ultima atencion
+
   const [fecha, setFecha] = useState("")
   const [vet, setVet] = useState("")
   const [diagnostico, setDiagnostico] = useState("")
 
-  // si esto tiene un numero, significa que estoy editando esa mascota. si es null es porque estoy creando una nueva
   const [idEditando, setIdEditando] = useState(null)
 
-  // cargar lo que hay guardado en el localStorage apenas se abre la pagina
+
   useEffect(() => {
     const guardado = localStorage.getItem("mascotas")
 
     if (guardado != null) {
       setMascotas(JSON.parse(guardado))
     } else {
-      // si no hay nada guardado dejo un registro de ejemplo (el que dio el profe)
       const inicial = [
         {
           id: 1,
@@ -65,7 +60,7 @@ function App() {
     }
   }, [])
 
-  // guardar en localStorage cada vez que la lista de mascotas cambia
+
   useEffect(() => {
     localStorage.setItem("mascotas", JSON.stringify(mascotas))
   }, [mascotas])
@@ -98,7 +93,6 @@ function App() {
     setDiagnostico("")
   }
 
-  // valida los campos del formulario antes de guardar. devuelve true si esta todo ok
   function validarCampos() {
     if (nombre == "") {
       alert("Falta el nombre de la mascota")
@@ -136,7 +130,6 @@ function App() {
     return true
   }
 
-  // CREATE y UPDATE, dependiendo si idEditando tiene algo o no
   function guardarMascota(e) {
     e.preventDefault()
 
@@ -167,7 +160,6 @@ function App() {
     }
 
     if (idEditando != null) {
-      // UPDATE -> recorro la lista con map y cuando el id coincide reemplazo esa mascota
       const listaActualizada = mascotas.map((m) => {
         if (m.id == idEditando) {
           return objMascota
@@ -178,7 +170,6 @@ function App() {
       setMascotas(listaActualizada)
       alert("Los datos de la mascota se actualizaron correctamente")
     } else {
-      // CREATE -> agrego al final del arreglo
       setMascotas([...mascotas, objMascota])
       alert("Mascota agregada correctamente")
     }
@@ -186,9 +177,7 @@ function App() {
     limpiarForm()
   }
 
-  // dejar los datos de una mascota cargados en el form para poder editarlos (UPDATE)
   function editarMascota(id) {
-    // uso filter para buscar la mascota con ese id, me deberia quedar un arreglo de un solo elemento
     const resultado = mascotas.filter((m) => m.id == id)
 
     if (resultado.length == 0) {
@@ -330,7 +319,6 @@ function App() {
         </form>
       </div>
 
-      {/* ---------- TABLA ---------- */}
       <div className="card p-3 tarjeta">
         <h4>Mascotas registradas</h4>
 
